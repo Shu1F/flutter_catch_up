@@ -22,30 +22,26 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(title: Text('ホームページ'), backgroundColor: Colors.tealAccent),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-        child: Container(
-          width: 300,
-          height: 300,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            border: Border.all(color: Colors.blue, width: 5),
-            borderRadius: BorderRadius.circular(16),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 24),
+            child: TextField(controller: controller),
           ),
-          child: Stack(
-            alignment: Alignment.topRight,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(width: 200, height: 200, color: Colors.black),
-              Icon(Icons.beach_access, size: 100, color: Colors.blueAccent),
-              // Icon(Icons.beach_access, size: 100, color: Colors.blueAccent),
-              // Icon(Icons.balance, size: 100, color: Colors.blueAccent),
-            ],
+          ElevatedButton(
+            onPressed: () {
+              // 登録処理
+              print(controller.text);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Icon(Icons.check), Text('登録')],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
