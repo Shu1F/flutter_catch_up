@@ -17,28 +17,31 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
-    final controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(title: Text('ホームページ'), backgroundColor: Colors.tealAccent),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 24),
-            child: TextField(controller: controller),
+            padding: const EdgeInsets.only(bottom: 32),
+            child: TextField(),
           ),
-          ElevatedButton(
-            onPressed: () {
-              // 登録処理
-              print(controller.text);
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Icon(Icons.check), Text('登録')],
+          ElevatedButton(onPressed: () {}, child: Text('メモを登録')),
+          Flexible(
+            child: ListView.builder(
+              itemCount: memos.length,
+              itemBuilder: (context, index) {
+                return Text(memos[index], style: TextStyle(fontSize: 24));
+              },
             ),
           ),
         ],
