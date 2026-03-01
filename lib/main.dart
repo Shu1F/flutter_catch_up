@@ -11,55 +11,41 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      appBar: AppBar(title: Text('ホームページ'), backgroundColor: Colors.tealAccent),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+        child: Container(
+          width: 300,
+          height: 300,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            border: Border.all(color: Colors.blue, width: 5),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Stack(
+            alignment: Alignment.topRight,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(width: 200, height: 200, color: Colors.black),
+              Icon(Icons.beach_access, size: 100, color: Colors.blueAccent),
+              // Icon(Icons.beach_access, size: 100, color: Colors.blueAccent),
+              // Icon(Icons.balance, size: 100, color: Colors.blueAccent),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
