@@ -25,6 +25,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> memos = ['memo1', 'memo2', 'memo3'];
+  final controller = TextEditingController();
+
+  void addMemo() {
+    memos.add(controller.text);
+    // 入力されている情報のリセット
+    controller.clear();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +43,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 32),
-            child: TextField(),
+            child: TextField(controller: controller),
           ),
-          ElevatedButton(onPressed: () {}, child: Text('メモを登録')),
+          ElevatedButton(
+            onPressed: () {
+              addMemo();
+            },
+            child: Text('メモを登録'),
+          ),
           Flexible(
             child: ListView.builder(
               itemCount: memos.length,
