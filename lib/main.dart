@@ -35,6 +35,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
+  void deleteMemo(int index) {
+    memos.removeAt(index);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +60,18 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: memos.length,
               itemBuilder: (context, index) {
-                return Text(memos[index], style: TextStyle(fontSize: 24));
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(memos[index], style: TextStyle(fontSize: 24)),
+                    IconButton(
+                      onPressed: () {
+                        deleteMemo(index);
+                      },
+                      icon: Icon(Icons.delete),
+                    ),
+                  ],
+                );
               },
             ),
           ),
