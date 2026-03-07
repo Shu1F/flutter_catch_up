@@ -60,40 +60,43 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: memos.length,
               itemBuilder: (context, index) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(memos[index], style: TextStyle(fontSize: 24)),
-                    IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text('メモを削除'),
-                              content: Text('本当に削除しますか？この作業は取り消しできません。'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('キャンセル'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    deleteMemo(index);
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('削除'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: Icon(Icons.delete),
-                    ),
-                  ],
+                return InkWell(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(memos[index], style: TextStyle(fontSize: 24)),
+                      IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('メモを削除'),
+                                content: Text('本当に削除しますか？この作業は取り消しできません。'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('キャンセル'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      deleteMemo(index);
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('削除'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
