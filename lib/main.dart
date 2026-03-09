@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'memo_detail_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -61,7 +63,12 @@ class _HomePageState extends State<HomePage> {
               itemCount: memos.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MemoDetailPage()),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
