@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'memo_detail_page.dart';
 
@@ -30,9 +31,9 @@ class _HomePageState extends State<HomePage> {
   List<String> memos = ['memo1', 'memo2', 'memo3'];
   final controller = TextEditingController();
 
-  void addMemo() {
+  Future<void> addMemo() async {
+    final prefs = await SharedPreferences.getInstance();
     memos.add(controller.text);
-    // 入力されている情報のリセット
     controller.clear();
     setState(() {});
   }
