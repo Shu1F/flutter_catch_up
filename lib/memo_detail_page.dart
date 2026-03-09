@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MemoDetailPage extends StatelessWidget {
-  const MemoDetailPage({super.key});
+  const MemoDetailPage(this.memo, {super.key});
+  final String memo;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('メモ詳細')),
-      body: Center(child: Text('ここにメモの詳細が表示されます')),
+      body: Center(child: Text(memo)),
     );
   }
 }
