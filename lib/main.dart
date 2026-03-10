@@ -28,19 +28,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> memos = ['memo1', 'memo2', 'memo3'];
+  List<String> memos = [];
   final controller = TextEditingController();
 
-  Future<void> addMemo() async {
+  Future<void> initMemos() async {
     final prefs = await SharedPreferences.getInstance();
+    final storedMemos = prefs.getStringList('memos');
+    memos = storedMemos ?? [];
+    setState(() {});
+  }
+
+  Future<void> addMemo() async {
     memos.add(controller.text);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('memos', memos);
     controller.clear();
     setState(() {});
   }
 
-  void deleteMemo(int index) {
+  Future<void> deleteMemo(int index) async {
     memos.removeAt(index);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('memos', memos);
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initMemos();
   }
 
   @override
